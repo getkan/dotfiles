@@ -1,0 +1,103 @@
+{
+    "editor.formatOnSave": true,
+    "editor.minimap.showSlider": "always",
+    "editor.tabCompletion": "on",
+    "editor.wordWrap": "on",
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
+
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/usr/bin/zsh",
+        }
+    },
+
+    "intelephense.environment.includePaths": [
+        "vendor/laravel/framework/src",
+        "vendor/nesbot/carbon/src",
+        "vendor/auth/src"
+    ],
+
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+
+    "files.autoSave": "afterDelay",
+
+    "html.format.contentUnformatted": "",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml",
+        "HTML (EEx)",
+        "HTML (Eex)",
+        "plist"
+    ],
+
+    "colorize.languages": ["typescript", "javascript", "css", "scss", "vue"],
+    "colorize.exclude": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/node_modules",
+        "**/bower_components",
+        "**/tmp",
+        "**/dist",
+        "**/tests"
+    ],
+
+    "indentRainbow.includedLanguages": ["javascript", "vue"],
+    "indentRainbow.indicatorStyle": "light",
+
+    "security.workspace.trust.untrustedFiles": "open",
+    "security.promptForLocalFileProtocolHandling": false,
+    "extensions.ignoreRecommendations": true,
+
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
+        "vue": true,
+        "javascript": true,
+        "php": true
+    },
+
+    "csv.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
+    "chat.agent.maxRequests": 26000000000000000000,
+
+    "window.newWindowProfile": "Default",
+    "workbench.startupEditor": "none",
+    "update.showReleaseNotes": false,
+    "explorer.confirmPasteNative": false,
+    "svelte.enable-ts-plugin": true,
+    "markdown-preview-enhanced.previewTheme": "vscode.css",
+    "vim.useSystemClipboard": true,
+    "terminal.integrated.initialHint": false,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.md": "markdown-preview-enhanced"
+    },
+}
