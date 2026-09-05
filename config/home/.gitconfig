@@ -6,6 +6,7 @@
 	
 [safe]
 	directory = /home/getkan/Projects/
+	directory = /home/getkan/Projects/reviewpush/ReviewPushDashboard
 [user]
 	email = nicholas.getka@gmail.com
 	name = getkan
@@ -17,3 +18,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main

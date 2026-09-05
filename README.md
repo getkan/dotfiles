@@ -77,6 +77,14 @@ Leader key: `Space`.
 | Normal | `<leader>fd` | Search diagnostics in current file. |
 | Normal | `<leader>fs` | Search pattern in current file. |
 
+### Reformatting text
+
+`:Reformat` (accepts a range, e.g. `:'<,'>Reformat` on a visual selection)
+sends the selected text to the `getkan-ai` agent's `reformat` skill, which
+normalizes whitespace, line breaks, tabs, and bullet points into Markdown
+without changing any words. Requires the `codex` CLI to be installed and
+configured; see `lua/reformat.lua`.
+
 #### Autocomplete keybindings
 
 | Mode | Keybinding | Description |

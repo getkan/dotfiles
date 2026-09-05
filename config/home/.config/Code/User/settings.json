@@ -4,7 +4,6 @@
     "editor.tabCompletion": "on",
     "editor.wordWrap": "on",
     "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
-
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.enableMultiLinePasteWarning": "never",
@@ -14,23 +13,18 @@
             "path": "/usr/bin/zsh",
         }
     },
-
     "intelephense.environment.includePaths": [
         "vendor/laravel/framework/src",
         "vendor/nesbot/carbon/src",
         "vendor/auth/src"
     ],
-
     "git.autofetch": true,
     "git.openRepositoryInParentFolders": "never",
-
     "files.autoSave": "afterDelay",
-
     "html.format.contentUnformatted": "",
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-
     "auto-close-tag.activationOnLanguage": [
         "xml",
         "php",
@@ -52,8 +46,13 @@
         "HTML (Eex)",
         "plist"
     ],
-
-    "colorize.languages": ["typescript", "javascript", "css", "scss", "vue"],
+    "colorize.languages": [
+        "typescript",
+        "javascript",
+        "css",
+        "scss",
+        "vue"
+    ],
     "colorize.exclude": [
         "**/.git",
         "**/.svn",
@@ -66,16 +65,16 @@
         "**/dist",
         "**/tests"
     ],
-
-    "indentRainbow.includedLanguages": ["javascript", "vue"],
+    "indentRainbow.includedLanguages": [
+        "javascript",
+        "vue"
+    ],
     "indentRainbow.indicatorStyle": "light",
-
     "security.workspace.trust.untrustedFiles": "open",
     "security.promptForLocalFileProtocolHandling": false,
     "extensions.ignoreRecommendations": true,
-
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": true,
         "scminput": false,
@@ -83,11 +82,9 @@
         "javascript": true,
         "php": true
     },
-
     "csv.enabled": true,
     "chat.viewSessions.orientation": "stacked",
     "chat.agent.maxRequests": 26000000000000000000,
-
     "window.newWindowProfile": "Default",
     "workbench.startupEditor": "none",
     "update.showReleaseNotes": false,
@@ -97,7 +94,7 @@
     "vim.useSystemClipboard": true,
     "terminal.integrated.initialHint": false,
     "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.md": "markdown-preview-enhanced"
+        "*.copilotmd": "vscode.markdown.preview.editor"
     },
+    "latex-workshop.formatting.latex": "latexindent"
 }
