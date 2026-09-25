@@ -5,21 +5,38 @@ single source of truth.
 
 ## Layout
 
-`config/` mirrors the Fedora filesystem it gets installed onto:
+`config/` mirrors the Fedora filesystem it gets installed onto. Home files are
+stored below the account they belong to:
 
-- `config/home/...` -> `~/...` (e.g. `config/home/.bashrc` -> `~/.bashrc`)
-- `config/home/.config/nvim/` -> `~/.config/nvim/` ([nvim-light](https://github.com/VonHeikemen/nvim-light) config, leader key is `<Space>`)
+- `config/home/<user>/...` -> `/home/<user>/...` (e.g. `config/home/<user>/.bashrc` -> `/home/<user>/.bashrc`)
+- `config/home/<user>/.config/nvim/` -> `/home/<user>/.config/nvim/` ([nvim-light](https://github.com/VonHeikemen/nvim-light) config, leader key is `<Space>`)
 - `config/etc/...` -> `/etc/...` (requires sudo, e.g. `config/etc/udev/rules.d/10-wakeup.rules` -> `/etc/udev/rules.d/10-wakeup.rules`)
 - `img/backgrounds/*` -> `~/.local/share/backgrounds/`
 
-Every file under `config/` is symlinked into place automatically; add a new
-file at the matching mirrored path to have `install.sh` pick it up.
+`install.sh` installs `config/home/<user>/` into the current account's home
+directory. Set `DOTFILES_USER` in `.env` to the username returned by `id -un`;
+the installer rejects missing, malformed, or mismatched values. Add a new file
+under `config/home/<user>/` to have it symlinked into the matching location.
 
 `install.sh` also runs `scripts/setup-term.sh`, which installs and configures
 the terminal environment (zsh, Oh My Zsh, zsh-autosuggestions, Starship,
 Ghostty).
 
+The managed user preferences include Code and Cursor settings, LunarVim, QMK,
+Ulauncher, MIME associations, and XDG user-directory settings. Browser data,
+editor state, caches, history, and credentials remain outside the repository.
+
 ## Usage
+
+Create the local environment file and set the username for the system where
+the configuration will be installed:
+
+```sh
+cp .env.example .env
+# Edit .env and set DOTFILES_USER to the output of: id -un
+```
+
+Then run:
 
 ```sh
 ./install.sh
@@ -30,7 +47,7 @@ otherwise overwrite into `.backup/<timestamp>/`.
 
 ## Neovim
 
-`config/home/.config/nvim/` is the `stable.lua` config from
+`config/home/<user>/.config/nvim/` is the `stable.lua` config from
 [nvim-light](https://github.com/VonHeikemen/nvim-light) (targets NVIM v0.12+),
 paired with its `.luarc.json`.
 
@@ -53,6 +70,29 @@ paired with its `.luarc.json`.
 | mini.nvim | Collection of independent lua modules that enhance Neovim's features. |
 | nvim-treesitter | Manages treesitter parsers and provides query files for supported languages. |
 | nvim-lspconfig | Quickstart configs for Neovim's LSP client. |
+| render-markdown.nvim | Renders Markdown syntax as formatted text in the editor. |
+| outline.nvim | Displays a symbol outline for the current buffer. |
+
+### Plugin commands
+
+| Plugin | Command | Description |
+| --- | --- | --- |
+| tokyonight.nvim | `:colorscheme tokyonight` | Apply the configured colorscheme. |
+| which-key.nvim | `:WhichKey` | Show available keymaps for the current prefix. |
+| mini.nvim | `:Pick` | Open MiniPick; use a picker such as `:Pick files`, `:Pick buffers`, `:Pick oldfiles`, `:Pick grep_live`, `:Pick diagnostic`, or `:Pick buf_lines`. |
+| nvim-treesitter | `:TSInstall <language>` | Install a parser. |
+| nvim-treesitter | `:TSUpdate` | Update installed parsers. |
+| nvim-treesitter | `:TSUninstall <language>` | Remove a parser. |
+| nvim-treesitter | `:TSInstallFromGrammar <language> <path>` | Install a parser from a local grammar repository. |
+| nvim-treesitter | `:TSLog` | Open the Treesitter log. |
+| render-markdown.nvim | `:RenderMarkdown toggle` | Toggle Markdown rendering for the current buffer. |
+| outline.nvim | `:Outline` | Toggle the symbol outline. |
+
+`mini.icons`, `mini.surround`, `mini.notify`, `mini.bufremove`, `mini.files`,
+`mini.statusline`, `mini.extra`, `mini.snippets`, and `mini.completion` are
+configured Lua modules; they do not add a dedicated Ex command in this config.
+`nvim-lspconfig` is configured through Neovim's built-in LSP API and likewise
+does not add a dedicated Ex command.
 
 ### Keybindings
 
@@ -71,11 +111,14 @@ Leader key: `Space`.
 | Normal | `<leader>f` | Toggle file explorer. |
 | Normal | `<leader>bc` | Close current buffer and preserve window layout. |
 | Normal | `<leader>?` | Search oldfiles history. |
-| Normal | `<leader><space>` | Search open buffers. |
+| Normal | `<leader>b` | Search open buffers. |
 | Normal | `<leader>ff` | Find file in current working directory. |
 | Normal | `<leader>fg` | Search pattern in current working directory (live grep). |
 | Normal | `<leader>fd` | Search diagnostics in current file. |
 | Normal | `<leader>fs` | Search pattern in current file. |
+| Normal | `<leader>o` | Toggle the symbol outline. |
+| Normal | `<leader>v` | Toggle rendered Markdown for the current buffer. |
+| Normal | `<leader>mv` | Toggle rendered Markdown for the current buffer. |
 
 ### Reformatting text
 

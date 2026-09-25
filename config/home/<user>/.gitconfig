@@ -1,12 +1,13 @@
-[includeIf "gitdir:/home/getkan/Projects/personal/"]
+
+[includeIf "gitdir:~/Projects/personal/"]
 	path = ~/.gitconfig-personal
 
-[includeIf "gitdir:/home/getkan/Projects/reviewpush/"]
+[includeIf "gitdir:~/Projects/reviewpush/"]
 	path = ~/.gitconfig-reviewpush
 	
 [safe]
-	directory = /home/getkan/Projects/
-	directory = /home/getkan/Projects/reviewpush/ReviewPushDashboard
+	directory = ~/Projects/
+	directory = ~/Projects/reviewpush/ReviewPushDashboard
 [user]
 	email = nicholas.getka@gmail.com
 	name = getkan

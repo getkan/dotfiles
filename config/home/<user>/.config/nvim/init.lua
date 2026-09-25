@@ -19,6 +19,8 @@ vim.o.timeoutlen = 300
 vim.o.signcolumn = 'yes'
 vim.o.winborder = 'rounded'
 vim.o.linebreak = true
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
 
 -- Space as leader key
 vim.g.mapleader = vim.keycode('<Space>')
@@ -42,6 +44,7 @@ vim.pack.add({
   {src = 'https://github.com/nvim-mini/mini.nvim', version = 'main'},
   {src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main'},
   'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+  'https://github.com/hedyhli/outline.nvim',
 })
 
 -- ========================================================================== --
@@ -89,7 +92,7 @@ require('mini.pick').setup({})
 -- :help MiniPick.builtin
 -- :help MiniExtra.pickers
 vim.keymap.set('n', '<leader>?', '<cmd>Pick oldfiles<cr>', {desc = 'Search file history'})
-vim.keymap.set('n', '<leader><space>', '<cmd>Pick buffers<cr>', {desc = 'Search open files'})
+vim.keymap.set('n', '<leader>b', '<cmd>Pick buffers<cr>', {desc = 'Search open files'})
 vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<cr>', {desc = 'Search all files'})
 vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<cr>', {desc = 'Search in project'})
 vim.keymap.set('n', '<leader>fd', '<cmd>Pick diagnostic<cr>', {desc = 'Search diagnostics'})
@@ -129,7 +132,11 @@ require('which-key').setup({
 require('which-key').add({
   {'<leader>f', group = 'Fuzzy Find'},
   {'<leader>b', group = 'Buffer'},
+  {'<leader>o', desc = 'Outline'},
 })
+
+require('outline').setup({})
+vim.keymap.set('n', '<leader>o', '<cmd>Outline<cr>', {desc = 'Outline'})
 
 -- See :help render-markdown.nvim-configuration
 -- Start disabled; <leader>v / <leader>mv toggle the rendered view.

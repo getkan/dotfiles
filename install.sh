@@ -2,7 +2,7 @@
 #
 # Fedora dotfiles installer.
 #
-# config/home/  mirrors $HOME  (e.g. config/home/.bashrc -> ~/.bashrc)
+# config/home/<user>/ mirrors $HOME (e.g. config/home/<user>/.bashrc -> ~/.bashrc)
 # config/etc/   mirrors /etc   (e.g. config/etc/udev/rules.d/10-wakeup.rules -> /etc/udev/rules.d/10-wakeup.rules)
 #
 # Every file is symlinked into place so the repo stays the single source of
@@ -12,6 +12,8 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="${DOTFILES_DIR}/.backup/$(date +%Y%m%d-%H%M%S)"
+ENV_FILE="${DOTFILES_DIR}/.env"
+HOME_TEMPLATE_DIR="${DOTFILES_DIR}/config/home/<user>"
 
 log() { printf '\033[1;32m==>\033[0m %s\n' "$1"; }
 warn() { printf '\033[1;33m!!\033[0m %s\n' "$1" >&2; }
@@ -19,6 +21,44 @@ warn() { printf '\033[1;33m!!\033[0m %s\n' "$1" >&2; }
 require_fedora() {
 	if [[ ! -f /etc/os-release ]] || ! grep -q '^ID=fedora' /etc/os-release; then
 		warn "This script is intended for Fedora; continuing anyway."
+	fi
+}
+
+load_dotfiles_user() {
+	local line found=0
+	DOTFILES_USER=""
+
+	if [[ ! -r "$ENV_FILE" ]]; then
+		warn "Missing environment file: $ENV_FILE"
+		return 1
+	fi
+
+	while IFS= read -r line || [[ -n "$line" ]]; do
+		case "$line" in
+			''|'#'*) ;;
+			DOTFILES_USER=*)
+				if (( found )); then
+					warn "DOTFILES_USER is defined more than once in $ENV_FILE"
+					return 1
+				fi
+				DOTFILES_USER="${line#DOTFILES_USER=}"
+				found=1
+				;;
+			*)
+				warn "Invalid entry in $ENV_FILE: $line"
+				return 1
+				;;
+		esac
+	done < "$ENV_FILE"
+
+	if (( ! found )) || [[ ! "$DOTFILES_USER" =~ ^[a-z_][a-z0-9_-]*$ ]]; then
+		warn "DOTFILES_USER must be a valid lowercase username in $ENV_FILE"
+		return 1
+	fi
+
+	if [[ "$DOTFILES_USER" != "$(id -un)" ]]; then
+		warn "DOTFILES_USER ($DOTFILES_USER) does not match the current user ($(id -un))"
+		return 1
 	fi
 }
 
@@ -53,11 +93,18 @@ link_tree() {
 	while IFS= read -r -d '' file; do
 		local rel="${file#"$src_root"/}"
 		link_file "$file" "${dest_root}/${rel}" "$as"
-	done < <(find "$src_root" -type f -print0)
+	done < <(find "$src_root" \( -type f -o -type l \) -print0)
 }
 
 install_home_files() {
-	link_tree "${DOTFILES_DIR}/config/home" "${HOME}"
+	load_dotfiles_user
+
+	if [[ ! -d "$HOME_TEMPLATE_DIR" ]]; then
+		warn "Missing home configuration template: $HOME_TEMPLATE_DIR"
+		return 1
+	fi
+
+	link_tree "$HOME_TEMPLATE_DIR" "${HOME}"
 }
 
 install_etc_files() {

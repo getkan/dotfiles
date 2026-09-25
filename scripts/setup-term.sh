@@ -4,7 +4,7 @@
 # Starship, and Ghostty. Safe to re-run (each step is skipped if already done).
 #
 # Called from install.sh. The Starship config itself lives at
-# config/home/.config/starship.toml and is installed by install.sh's normal
+# config/home/<user>/.config/starship.toml and is installed by install.sh's normal
 # config-mirroring step, not by this script.
 
 set -euo pipefail

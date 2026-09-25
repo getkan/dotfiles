@@ -76,14 +76,14 @@
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
-        "markdown": true,
+        "markdown": false,
         "scminput": false,
         "vue": true,
         "javascript": true,
-        "php": true
+        "php": true,
+        "python": true
     },
     "csv.enabled": true,
-    "chat.viewSessions.orientation": "stacked",
     "chat.agent.maxRequests": 26000000000000000000,
     "window.newWindowProfile": "Default",
     "workbench.startupEditor": "none",
@@ -96,5 +96,22 @@
     "workbench.editorAssociations": {
         "*.copilotmd": "vscode.markdown.preview.editor"
     },
-    "latex-workshop.formatting.latex": "latexindent"
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "latexmk",
+    "chat.sessionSync.enabled": true,
+    "security.workspace.trust.startupPrompt": "always",
+    "explorer.confirmDragAndDrop": false,
+    "chat.viewSessions.orientation": "stacked"
 }

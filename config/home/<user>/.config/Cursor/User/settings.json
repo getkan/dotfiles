@@ -1,0 +1,125 @@
+{
+    "eslint.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+        "javascript",
+        "vue"
+    ],
+    "npm.exclude": [
+        "**/public/**/*",
+        "**/vendor/**/*",
+        "**/.yalc/**/*"
+    ],
+    "files.watcherExclude": {
+        "**/node_modules/*/**": false
+    },
+    "search.exclude": {
+        "**/node_modules": false
+    },
+    "eslint.codeActionsOnSave.rules": null,
+    "npm.packageManager": "yarn",
+    "eslint.format.enable": true,
+    "eslint.runtime": "",
+    "editor.minimap.showSlider": "always",
+    "vue.codeActions.savingTimeLimit": 1e+59,
+    "[jsonc]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "terminal.integrated.scrollback": 10000,
+    "git.openRepositoryInParentFolders": "never",
+    "files.autoSave": "afterDelay",
+    "open-in-browser.default": "firefox",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "blade": "html",
+        "blade.php": "html",
+        "php": "html"
+    },
+    "workbench.settings.applyToAllProfiles": [
+        "emmet.includeLanguages"
+    ],
+    "githubPullRequests.terminalLinksHandler": "github",
+    "tailwindCSS.includeLanguages": {
+        "blade": "html",
+        "php": "html",
+        "blade.php": "html"
+    },
+    "tailwindCSS.emmetCompletions": true,
+    "files.associations": {
+        "*.blade.php": "html"
+    },
+    "workbench.colorCustomizations": {},
+    "[blade]": {
+        "editor.defaultFormatter": "amirmarmul.laravel-blade-vscode",
+        "editor.formatOnSave": true
+    },
+    "html.format.contentUnformatted": "",
+    "github.copilot.advanced": {},
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml",
+        "HTML (EEx)",
+        "HTML (Eex)",
+        "plist"
+    ],
+    "editor.formatOnSave": true,
+    "git.autofetch": true,
+    "vue.blocks": {},
+    "vs-code-prettier-eslint.prettierLast": true,
+    "githubPullRequests.pullBranch": "never",
+    "colorize.languages": [
+        "typescript",
+        "javascript",
+        "css",
+        "scss",
+        "vue"
+    ],
+    "colorize.exclude": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/.git",
+        "**/node_modules",
+        "**/bower_components",
+        "**/tmp",
+        "**/dist",
+        "**/tests"
+    ],
+    "editor.tabCompletion": "on",
+    "security.workspace.trust.untrustedFiles": "open",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "settingsSync.ignoredExtensions": [],
+    "indentRainbow.includedLanguages": [
+        "javascript",
+        "vue"
+    ],
+    "indentRainbow.indicatorStyle": "light"
+}
