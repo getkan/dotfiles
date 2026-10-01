@@ -45,6 +45,8 @@
 #
 # Keep the terminal content 24px away from the right window edge.
 
+theme = TokyoNight Moon
+
 # # Some config options have unique syntaxes for their value,
 # # which is explained in the docs for that config option.
 # # Just for example:

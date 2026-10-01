@@ -92,9 +92,11 @@
     "svelte.enable-ts-plugin": true,
     "markdown-preview-enhanced.previewTheme": "vscode.css",
     "vim.useSystemClipboard": true,
+    "vim.leader": "<C-M-a>",
     "terminal.integrated.initialHint": false,
     "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor"
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.md": "vscode.markdown.editor"
     },
     "latex-workshop.latex.tools": [
         {

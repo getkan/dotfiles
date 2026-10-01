@@ -1,0 +1,7 @@
+# /etc/udev/rules.d/10-wakeup.rules
+
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0181", RUN+="/bin/bash -c 'echo enabled > /sys/bus/usb/devices/$name/power/wakeup'"
+
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2188", ATTRS{idProduct}=="6533", RUN+="/bin/bash -c 'echo enabled > /sys/bus/usb/devices/$name/power/wakeup'"
+
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c52b", RUN+="/bin/bash -c 'echo enabled > /sys/bus/usb/devices/$name/power/wakeup'"

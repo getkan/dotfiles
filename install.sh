@@ -25,8 +25,9 @@ require_fedora() {
 }
 
 load_dotfiles_user() {
-	local line found=0
+	local line found_user=0 found_agent=0
 	DOTFILES_USER=""
+	AGENT_COMMAND=""
 
 	if [[ ! -r "$ENV_FILE" ]]; then
 		warn "Missing environment file: $ENV_FILE"
@@ -37,12 +38,20 @@ load_dotfiles_user() {
 		case "$line" in
 			''|'#'*) ;;
 			DOTFILES_USER=*)
-				if (( found )); then
+				if (( found_user )); then
 					warn "DOTFILES_USER is defined more than once in $ENV_FILE"
 					return 1
 				fi
 				DOTFILES_USER="${line#DOTFILES_USER=}"
-				found=1
+				found_user=1
+				;;
+			AGENT_COMMAND=*)
+				if (( found_agent )); then
+					warn "AGENT_COMMAND is defined more than once in $ENV_FILE"
+					return 1
+				fi
+				AGENT_COMMAND="${line#AGENT_COMMAND=}"
+				found_agent=1
 				;;
 			*)
 				warn "Invalid entry in $ENV_FILE: $line"
@@ -51,8 +60,13 @@ load_dotfiles_user() {
 		esac
 	done < "$ENV_FILE"
 
-	if (( ! found )) || [[ ! "$DOTFILES_USER" =~ ^[a-z_][a-z0-9_-]*$ ]]; then
+	if (( ! found_user )) || [[ ! "$DOTFILES_USER" =~ ^[a-z_][a-z0-9_-]*$ ]]; then
 		warn "DOTFILES_USER must be a valid lowercase username in $ENV_FILE"
+		return 1
+	fi
+
+	if (( ! found_agent )) || [[ "$AGENT_COMMAND" != "codex" && "$AGENT_COMMAND" != "opencode" ]]; then
+		warn "AGENT_COMMAND must be codex or opencode in $ENV_FILE"
 		return 1
 	fi
 
@@ -105,10 +119,15 @@ install_home_files() {
 	fi
 
 	link_tree "$HOME_TEMPLATE_DIR" "${HOME}"
+	link_file "$ENV_FILE" "${HOME}/.config/dotfiles/env"
 }
 
 install_etc_files() {
 	link_tree "${DOTFILES_DIR}/config/etc" "/etc" sudo
+
+	if [[ -f "${DOTFILES_DIR}/config/etc/systemd/logind.conf.d/90-lid.conf" ]]; then
+		log "Lid-close settings installed; reboot to apply them"
+	fi
 
 	if [[ -d "${DOTFILES_DIR}/config/etc/udev" ]]; then
 		log "Reloading udev rules"

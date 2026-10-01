@@ -22,8 +22,8 @@ vim.o.linebreak = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us'
 
--- Space as leader key
-vim.g.mapleader = vim.keycode('<Space>')
+-- Ctrl-Alt-A as leader key
+vim.g.mapleader = vim.keycode('<C-M-a>')
 
 -- Basic clipboard interaction
 vim.keymap.set({'n', 'x'}, 'gy', '"+y', {desc = 'Copy to clipboard'})
@@ -71,19 +71,8 @@ require('mini.bufremove').setup({})
 -- Close buffer and preserve window layout
 vim.keymap.set('n', '<leader>bc', '<cmd>lua pcall(MiniBufremove.delete)<cr>', {desc = 'Close buffer'})
 
--- See :help MiniFiles.config
-local mini_files = require('mini.files')
-mini_files.setup({})
-
--- Toggle file explorer
--- See :help MiniFiles-navigation
-vim.keymap.set('n', '<leader>f', function()
-  if mini_files.close() then
-    return
-  end
-
-  mini_files.open()
-end, {desc = 'File explorer'})
+-- Toggle the built-in file explorer in a left-side split.
+vim.keymap.set('n', '<leader>f', '<cmd>Lexplore<cr>', {desc = 'File explorer'})
 
 -- See :help MiniPick.config
 require('mini.pick').setup({})
@@ -130,7 +119,7 @@ require('which-key').setup({
 })
 
 require('which-key').add({
-  {'<leader>f', group = 'Fuzzy Find'},
+  {'<leader>f', group = 'File explorer / Find'},
   {'<leader>b', group = 'Buffer'},
   {'<leader>o', desc = 'Outline'},
 })

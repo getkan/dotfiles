@@ -119,7 +119,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
-alias opencode='agent -p opencode'
 
 alias sail='vendor/bin/sail'
 alias up='vendor/bin/sail up -d'
@@ -127,3 +126,44 @@ alias down='vendor/bin/sail down --remove-orphans'
 
 # Starship prompt initialization
 eval "$(starship init zsh)"
+
+
+
+
+
+
+
+# >>> getkan-ai managed OpenRouter functions >>>
+unalias opencode 2>/dev/null || true
+function _getkan_load_openrouter_env() {
+  local env_file=/home/getkan/Projects/personal/getkan-ai/.env
+  if [[ ! -f "$env_file" ]]; then
+    print -u2 "error: create $env_file from .env.example first"
+    return 1
+  fi
+
+  setopt localoptions allexport
+  if ! source "$env_file"; then
+    print -u2 "error: could not load $env_file"
+    return 1
+  fi
+  if [[ -z "${OPENROUTER_API_KEY:-}" ]]; then
+    print -u2 "error: OPENROUTER_API_KEY is empty in $env_file"
+    return 1
+  fi
+}
+
+function codex() {
+  (
+    _getkan_load_openrouter_env || exit $?
+    command codex "$@"
+  )
+}
+
+function opencode() {
+  (
+    _getkan_load_openrouter_env || exit $?
+    command opencode "$@"
+  )
+}
+# <<< getkan-ai managed OpenRouter functions <<<

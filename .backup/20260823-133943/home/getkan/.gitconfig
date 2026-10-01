@@ -1,0 +1,17 @@
+[includeIf "gitdir:/home/getkan/Projects/personal/"]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:/home/getkan/Projects/reviewpush/"]
+	path = ~/.gitconfig-reviewpush
+	
+[safe]
+	directory = /home/getkan/Projects/reviewpush/ReviewPushDashboard
+[user]
+	email = nicholas.getka@gmail.com
+	name = getkan
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

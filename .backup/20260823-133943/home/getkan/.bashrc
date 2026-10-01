@@ -1,0 +1,1 @@
+/home/getkan/Projects/personal/dotfiles/config/bashrc

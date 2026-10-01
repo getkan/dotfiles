@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Sets up the terminal environment: zsh, Oh My Zsh, zsh-autosuggestions,
-# Starship, and Ghostty. Safe to re-run (each step is skipped if already done).
+# Starship, tmux, and Ghostty. Safe to re-run (each step is skipped if already done).
 #
 # Called from install.sh. The Starship config itself lives at
 # config/home/<user>/.config/starship.toml and is installed by install.sh's normal
@@ -129,6 +129,16 @@ install_starship() {
 	fi
 }
 
+install_tmux() {
+	if command -v tmux &>/dev/null; then
+		print_status "tmux is already installed"
+	else
+		print_info "Installing tmux..."
+		install_packages tmux
+		print_status "tmux installed successfully"
+	fi
+}
+
 install_ghostty() {
 	if command -v ghostty &>/dev/null; then
 		print_status "Ghostty is already installed"
@@ -199,6 +209,7 @@ main() {
 	install_oh_my_zsh
 	install_zsh_autosuggestions
 	install_starship
+	install_tmux
 	install_ghostty
 	set_default_shell
 	configure_zshrc

@@ -9,7 +9,8 @@ single source of truth.
 stored below the account they belong to:
 
 - `config/home/<user>/...` -> `/home/<user>/...` (e.g. `config/home/<user>/.bashrc` -> `/home/<user>/.bashrc`)
-- `config/home/<user>/.config/nvim/` -> `/home/<user>/.config/nvim/` ([nvim-light](https://github.com/VonHeikemen/nvim-light) config, leader key is `<Space>`)
+- `config/home/<user>/.config/nvim/` -> `/home/<user>/.config/nvim/` ([nvim-light](https://github.com/VonHeikemen/nvim-light) config, leader key is `Ctrl+Alt+A`)
+- `config/home/<user>/.config/tmux/` -> `/home/<user>/.config/tmux/` (Tokyo Night Moon theme and Vim-style navigation)
 - `config/etc/...` -> `/etc/...` (requires sudo, e.g. `config/etc/udev/rules.d/10-wakeup.rules` -> `/etc/udev/rules.d/10-wakeup.rules`)
 - `img/backgrounds/*` -> `~/.local/share/backgrounds/`
 
@@ -20,7 +21,7 @@ under `config/home/<user>/` to have it symlinked into the matching location.
 
 `install.sh` also runs `scripts/setup-term.sh`, which installs and configures
 the terminal environment (zsh, Oh My Zsh, zsh-autosuggestions, Starship,
-Ghostty).
+tmux, Ghostty).
 
 The managed user preferences include Code and Cursor settings, LunarVim, QMK,
 Ulauncher, MIME associations, and XDG user-directory settings. Browser data,
@@ -33,7 +34,8 @@ the configuration will be installed:
 
 ```sh
 cp .env.example .env
-# Edit .env and set DOTFILES_USER to the output of: id -un
+# Edit .env, set DOTFILES_USER to the output of: id -un
+# Set AGENT_COMMAND to either codex or opencode
 ```
 
 Then run:
@@ -44,6 +46,11 @@ Then run:
 
 The script is idempotent and backs up any pre-existing files it would
 otherwise overwrite into `.backup/<timestamp>/`.
+
+## tmux
+
+See [TMUX.md](TMUX.md) for installation verification, keybindings, session
+management, and a proposed tmux, Neovim, and OpenCode development workflow.
 
 ## Neovim
 
@@ -80,6 +87,7 @@ paired with its `.luarc.json`.
 | tokyonight.nvim | `:colorscheme tokyonight` | Apply the configured colorscheme. |
 | which-key.nvim | `:WhichKey` | Show available keymaps for the current prefix. |
 | mini.nvim | `:Pick` | Open MiniPick; use a picker such as `:Pick files`, `:Pick buffers`, `:Pick oldfiles`, `:Pick grep_live`, `:Pick diagnostic`, or `:Pick buf_lines`. |
+| netrw (built-in) | `:Lexplore` | Open the file explorer in a left-side split. |
 | nvim-treesitter | `:TSInstall <language>` | Install a parser. |
 | nvim-treesitter | `:TSUpdate` | Update installed parsers. |
 | nvim-treesitter | `:TSUninstall <language>` | Remove a parser. |
@@ -96,7 +104,7 @@ does not add a dedicated Ex command.
 
 ### Keybindings
 
-Leader key: `Space`.
+Leader key: `Ctrl+Alt+A`.
 
 | Mode | Keybinding | Description |
 | --- | --- | --- |
@@ -119,14 +127,18 @@ Leader key: `Space`.
 | Normal | `<leader>o` | Toggle the symbol outline. |
 | Normal | `<leader>v` | Toggle rendered Markdown for the current buffer. |
 | Normal | `<leader>mv` | Toggle rendered Markdown for the current buffer. |
+| Visual | `<leader>r` | Reformat the selected text as Markdown. |
 
 ### Reformatting text
 
 `:Reformat` (accepts a range, e.g. `:'<,'>Reformat` on a visual selection)
 sends the selected text to the `getkan-ai` agent's `reformat` skill, which
 normalizes whitespace, line breaks, tabs, and bullet points into Markdown
-without changing any words. Requires the `codex` CLI to be installed and
-configured; see `lua/reformat.lua`.
+without changing any words. Requires the selected `codex` or `opencode` CLI
+to be installed and configured; see `lua/reformat.lua`. In Visual mode, press
+`<leader>r` to run the command on the current selection. The backend is selected by
+`AGENT_COMMAND=codex` or `AGENT_COMMAND=opencode` in `.env`; rerun
+`./install.sh` after creating the file so GUI-launched Neovim can read it.
 
 #### Autocomplete keybindings
 
