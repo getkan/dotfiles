@@ -58,6 +58,14 @@ Then run:
 The script is idempotent and backs up any pre-existing files it would
 otherwise overwrite into `.backup/<timestamp>/`.
 
+## GNOME background
+
+Set the background color shown around a centered wallpaper:
+
+```sh
+gsettings set org.gnome.desktop.background primary-color '#202020'
+```
+
 ## tmux
 
 See [TMUX.md](TMUX.md) for installation verification, keybindings, session

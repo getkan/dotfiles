@@ -1,5 +1,5 @@
 [Added Associations]
-text/plain=org.gnome.gedit.desktop;code.desktop;
+text/plain=org.gnome.gedit.desktop;code.desktop;okularApplication_mobi.desktop;
 application/pdf=code.desktop;org.gnome.Evince.desktop;libreoffice-draw.desktop;okularApplication_pdf.desktop;
 video/ogg=vlc.desktop;
 video/x-ogm=vlc.desktop;
@@ -108,5 +108,5 @@ image/webp=org.gnome.eog.desktop
 text/html=code.desktop
 image/svg+xml=code.desktop
 application/x-zerosize=okularApplication_pdf.desktop
-text/plain=code.desktop
+text/plain=okularApplication_mobi.desktop
 x-scheme-handler/codex=chatgpt.desktop

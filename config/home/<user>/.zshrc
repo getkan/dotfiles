@@ -133,6 +133,15 @@ eval "$(starship init zsh)"
 
 
 
+
+
+
+
+
+
+
+
+
 # >>> getkan-ai managed OpenRouter functions >>>
 unalias opencode 2>/dev/null || true
 function _getkan_load_openrouter_env() {

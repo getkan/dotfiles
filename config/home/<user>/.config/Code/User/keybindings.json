@@ -11,12 +11,40 @@
         "when": "terminal.active"
     },
     {
-        "key": "ctrl+i",
+        "key": "ctrl+h",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+l",
         "command": "workbench.action.toggleAuxiliaryBar"
     },
     {
-        "key": "ctrl+alt+b",
-        "command": "-workbench.action.toggleAuxiliaryBar"
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpen",
+        "when": "!inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "workbench.action.showCommands",
+        "when": "!inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.chat.focusInput"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen",
+        "when": "!inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.showCommands",
+        "when": "!inQuickOpen"
     },
     {
         "key": "ctrl+i",
