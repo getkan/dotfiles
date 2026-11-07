@@ -27,6 +27,15 @@ The managed user preferences include Code and Cursor settings, LunarVim, QMK,
 Ulauncher, MIME associations, and XDG user-directory settings. Browser data,
 editor state, caches, history, and credentials remain outside the repository.
 
+For the current Fedora desktop inventory and safe reinstall/home-sharing plan,
+see [Fedora configuration inventory](docs/fedora_configuration_inventory.md) and
+[Safely Reinstalling Fedora](docs/fedora_safe_reinstall.md). These are not a
+substitute for a verified encrypted backup. `.env` and historical `.backup/`
+files need special care: `.env` is ignored for future commits but may remain in
+older Git history, and historical `.backup/` files are still tracked. Review
+them and the history before publishing; do not commit secrets. The installer
+accepts only the two documented settings in `.env`, not arbitrary secret entries.
+
 ## Usage
 
 Create the local environment file and set the username for the system where
