@@ -24,8 +24,10 @@ the terminal environment (zsh, Oh My Zsh, zsh-autosuggestions, Starship,
 tmux, Ghostty).
 
 The managed user preferences include Code and Cursor settings, LunarVim, QMK,
-Ulauncher, MIME associations, and XDG user-directory settings. Browser data,
-editor state, caches, history, and credentials remain outside the repository.
+Ulauncher, Terminator, Clipse appearance, terminal selection, MIME
+associations, and XDG user-directory settings. Browser data, editor state,
+caches, history, the monitor layout, and credentials remain outside the
+repository.
 
 For the current Fedora desktop inventory and safe reinstall/home-sharing plan,
 see [Fedora configuration inventory](docs/fedora_configuration_inventory.md) and

@@ -1,0 +1,25 @@
+[global_config]
+  ask_before_closing = never
+  always_split_with_profile = True
+[keybindings]
+  go_left = <Primary><Shift>Left
+  go_right = <Primary><Shift>Right
+  resize_left = ""
+  resize_right = ""
+[profiles]
+  [[default]]
+    scrollback_lines = 1000
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      maximised = True
+      fullscreen = False
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+[plugins]

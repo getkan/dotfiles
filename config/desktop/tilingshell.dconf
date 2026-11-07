@@ -1,0 +1,9 @@
+[/]
+edge-tiling-mode='default'
+edge-tiling-offset=uint32 1
+inner-gaps=uint32 0
+layouts-json='[{"id":"Layout 4","tiles":[{"x":0,"y":0,"width":0.67,"height":1,"groups":[1]},{"x":0.67,"y":0,"width":0.33,"height":1,"groups":[1]}]},{"id":"Layout 2","tiles":[{"x":0.7090116279069767,"y":0,"width":0.2909883720930233,"height":1,"groups":[3]},{"x":0.29098837209302325,"y":0,"width":0.41802325581395344,"height":1,"groups":[3,5]},{"x":0,"y":0,"width":0.29098837209302325,"height":1,"groups":[5]}]},{"id":"18665207","tiles":[{"x":0,"y":0,"width":0.5,"height":1,"groups":[1]},{"x":0.5,"y":0,"width":0.49999999999999994,"height":1,"groups":[1]}]}]'
+outer-gaps=uint32 0
+quarter-tiling-threshold=uint32 20
+selected-layouts=[['Layout 1'], ['Layout 1'], ['Layout 1']]
+window-use-custom-border-color=false
